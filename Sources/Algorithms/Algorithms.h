@@ -32,10 +32,4 @@ namespace Algo {
 
 	bool ALGORITHMS_API DisplayImage(cv::Mat& outImage, FilterName filterName);
 
-	
-	
-
-
-	
-
 }

@@ -9,6 +9,9 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 add_subdirectory(Algorithms)
 add_subdirectory(ImageProcessingApp)
 add_subdirectory(Utils)
+add_subdirectory(UserInterface)
+
+QT5_ADD_RESOURCES(RESOURCE_QRC ${INTERFACE_RESOURCES})
 
 
 

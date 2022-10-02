@@ -13,6 +13,6 @@
 namespace Utils
 {
 	
-	bool UTILS_API ConvertMat2QImage(cv::Mat& src, QImage& dest);
-	bool UTILS_API ConvertQImage2Mat(QImage& src, cv::Mat& dest);
+	bool UTILS_API ConvertMat2QImage(const cv::Mat& src, QImage& dest);
+	bool UTILS_API ConvertQImage2Mat(const QImage& src, cv::Mat& dest);
 }
