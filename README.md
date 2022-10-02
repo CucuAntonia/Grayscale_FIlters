@@ -1,2 +1,0 @@
-# ImageProcessingApp
-Practica
