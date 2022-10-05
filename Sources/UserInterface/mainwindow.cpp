@@ -8,7 +8,12 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+    
     ui->setupUi(this);
+    ui->actionOpen->setIcon(QIcon("..\\..\\PracticaSpring2022\\Resources\\open.png"));
+    ui->actionOpen_Help_Page->setIcon(QIcon("..\\..\\PracticaSpring2022\\Resources\\help.png"));
+    ui->actionQuit->setIcon(QIcon("..\\..\\PracticaSpring2022\\Resources\\quit.png"));
+    ui->actionSave->setIcon(QIcon("..\\..\\PracticaSpring2022\\Resources\\save.png"));
     ui->horizontalSlider->setVisible(false);
     ui->radioButton_green->setVisible(false);
     ui->radioButton_red->setVisible(false);
@@ -16,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->radioButton_min->setVisible(false);
     ui->radioButton_max->setVisible(false);
     ui->lineEdit->setVisible(false);
+    ui->label_2->setVisible(false);
     ui->comboBox->setFixedHeight(48);
 }
 
@@ -109,6 +115,7 @@ void MainWindow::on_comboBox_currentTextChanged(const QString& arg1)
     ui->radioButton_min->setVisible(false);
     ui->radioButton_max->setVisible(false);
     ui->lineEdit->setVisible(false);
+    ui->label_2->setVisible(false);
     
     if (arg1 == "Decomposition")
     {
@@ -119,6 +126,7 @@ void MainWindow::on_comboBox_currentTextChanged(const QString& arg1)
         ui->radioButton_red->setVisible(false);
         ui->lineEdit->setVisible(false);
         ui->horizontalSlider->setVisible(false);
+        ui->label_2->setVisible(false);
     }
     if (arg1 == "Single color channel")
     {
@@ -129,6 +137,7 @@ void MainWindow::on_comboBox_currentTextChanged(const QString& arg1)
         ui->radioButton_max->setVisible(false);
         ui->lineEdit->setVisible(false);
         ui->horizontalSlider->setVisible(false);
+        ui->label_2->setVisible(false);
     }
     if (arg1 == "Custom gray shades")
     {
@@ -139,6 +148,7 @@ void MainWindow::on_comboBox_currentTextChanged(const QString& arg1)
         ui->radioButton_min->setVisible(false);
         ui->radioButton_max->setVisible(false);
         ui->lineEdit->setVisible(true);
+        ui->label_2->setVisible(true);
     }
 }
 
@@ -266,7 +276,7 @@ void MainWindow::Apply(QString arg1)
 
         ui->lineEdit->setVisible(true);
         ui->horizontalSlider->setVisible(true);
-
+        ui->label_2->setVisible(true);
          connect(ui->lineEdit, &QLineEdit::textChanged, [this](const QString& val)->void {ui->horizontalSlider->setValue(val.toInt()); });
         connect(ui->horizontalSlider, &QSlider::valueChanged, [this](const int& val)->void {ui->lineEdit->setText(locale().toString(val)); });
 
