@@ -24,7 +24,7 @@ set(LibrarySources
 )
 
 
-#QT5_ADD_RESOURCES(res.qrc)
+
 
 
 add_definitions(-DUI_EXPORT)
