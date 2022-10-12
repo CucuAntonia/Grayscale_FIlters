@@ -23,54 +23,48 @@ public:
     MainWindow(QWidget* parent = nullptr);
     ~MainWindow();
 
-
 private slots:
     void on_actionQuit_triggered();
 
     void on_actionOpen_Help_Page_triggered();
 
-    void on_choose_image_btn_clicked();
-
     void on_actionOpen_triggered();
 
     void on_actionSave_triggered();
 
-   void on_comboBox_currentTextChanged(const QString &arg1);
+    void on_comboBox_currentTextChanged(const QString &arg1);
 
-   void on_applybtn_clicked();
+    void on_applybtn_clicked();
 
-   void on_resetbtn_clicked();
+    void on_resetbtn_clicked();
 
-   bool isMinChecked();
+	bool isMinChecked();
   
-   bool isMaxChecked();
+    bool isMaxChecked();
 
-   bool isBlueChecked();
+    bool isBlueChecked();
 
-   bool isGreenChecked();
+    bool isGreenChecked();
 
-   bool isRedChecked();
+    bool isRedChecked();
 
-   void on_radioButton_blue_clicked();
+    void on_radioButton_blue_clicked();
 
-   void on_radioButton_green_clicked();
+    void on_radioButton_green_clicked();
 
-   void on_radioButton_red_clicked();
+    void on_radioButton_red_clicked();
 
-   void on_radioButton_min_clicked();
+    void on_radioButton_min_clicked();
 
-   void on_radioButton_max_clicked();
-
-   bool img_display(const cv::Mat& image);
-
-   void Apply(QString arg1);
+    void on_radioButton_max_clicked();
    
+    bool img_display(const cv::Mat& image);
+
+    void Apply(QString arg1);
 
 private:
     Ui::MainWindow* ui;
     QImage m_dispimg;
     QPixmap m_image;
-
-
 };
 

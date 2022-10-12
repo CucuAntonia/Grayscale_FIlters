@@ -11,8 +11,30 @@ add_subdirectory(ImageProcessingApp)
 add_subdirectory(Utils)
 add_subdirectory(UserInterface)
 
-QT5_ADD_RESOURCES(RESOURCE_QRC ${INTERFACE_RESOURCES})
+#INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}   
+	
+#ADD_DEFINITIONS(-DHAVE_CONFIG_H)	
+#							)
+#SET(Qt_PACKAGES Qt5::Widgets
+#				Qt5::Core
+#				Qt5::Gui
+#				)
 
 
+
+# find OpenCV package
+#	FIND_PACKAGE(OpenCV REQUIRED)
+#	SET(OpenCV_STATIC OFF)
+	
+#set deafult opencv dir
+#	set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "D:\OpenCV\opencv\build" )
+	
+# find qt package
+#	find_package(Qt5Widgets REQUIRED)
+#	find_package(Qt5OpenGL REQUIRED)
+#	find_package(Qt5Concurrent REQUIRED)
+	
+#target_include_directories(PracticaSpring2022 PUBLIC ${OpenCV_INCLUDE_DIRS})
+#TARGET_LINK_LIBRARIES(PracticaSpring2022  Qt5::Widgets ${OpenCV_LIBS})
 
 

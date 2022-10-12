@@ -8,7 +8,6 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-    
     ui->setupUi(this);
     ui->actionOpen->setIcon(QIcon("..\\..\\PracticaSpring2022\\Resources\\open.png"));
     ui->actionOpen_Help_Page->setIcon(QIcon("..\\..\\PracticaSpring2022\\Resources\\help.png"));
@@ -22,7 +21,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->radioButton_max->setVisible(false);
     ui->lineEdit->setVisible(false);
     ui->label_2->setVisible(false);
+    ui->label_3->setVisible(false);
     ui->comboBox->setFixedHeight(48);
+
 }
 
 MainWindow::~MainWindow()
@@ -40,15 +41,12 @@ void MainWindow::on_actionOpen_Help_Page_triggered()
     QMessageBox::information(this, "Information", "This application was designed by Cucu Ioana-Antonia. Work in progress!");
 }
 
-void MainWindow::on_choose_image_btn_clicked()
+void MainWindow::on_actionOpen_triggered()
 {
-
     QString filename = QFileDialog::getOpenFileName(this, tr("Choose"), "", tr("Images(*.png *.jpg *.jpeg *.bmp *.gif)"));
-
-
+    
     if (QString::compare(filename, QString()) != 0)
     {
-
         bool valid = m_image.load(filename);
 
         if (valid)
@@ -62,11 +60,6 @@ void MainWindow::on_choose_image_btn_clicked()
     }
     else
         ui->statusbar->showMessage("Error opening image", 5000);
-}
-
-void MainWindow::on_actionOpen_triggered()
-{
-    on_choose_image_btn_clicked();
 }
 
 void MainWindow::on_actionSave_triggered()
@@ -85,7 +78,6 @@ void MainWindow::on_actionSave_triggered()
 
     if (fileName.length() == 0)
         return;
-
 
     m_image.save(fileName);
 }
@@ -116,6 +108,8 @@ void MainWindow::on_comboBox_currentTextChanged(const QString& arg1)
     ui->radioButton_max->setVisible(false);
     ui->lineEdit->setVisible(false);
     ui->label_2->setVisible(false);
+    ui->label_3->setVisible(false);
+    
     
     if (arg1 == "Decomposition")
     {
@@ -127,6 +121,7 @@ void MainWindow::on_comboBox_currentTextChanged(const QString& arg1)
         ui->lineEdit->setVisible(false);
         ui->horizontalSlider->setVisible(false);
         ui->label_2->setVisible(false);
+        ui->label_3->setVisible(false);
     }
     if (arg1 == "Single color channel")
     {
@@ -138,6 +133,7 @@ void MainWindow::on_comboBox_currentTextChanged(const QString& arg1)
         ui->lineEdit->setVisible(false);
         ui->horizontalSlider->setVisible(false);
         ui->label_2->setVisible(false);
+        ui->label_3->setVisible(false);
     }
     if (arg1 == "Custom gray shades")
     {
@@ -149,6 +145,7 @@ void MainWindow::on_comboBox_currentTextChanged(const QString& arg1)
         ui->radioButton_max->setVisible(false);
         ui->lineEdit->setVisible(true);
         ui->label_2->setVisible(true);
+        ui->label_3->setVisible(true);
     }
 }
 
@@ -277,7 +274,8 @@ void MainWindow::Apply(QString arg1)
         ui->lineEdit->setVisible(true);
         ui->horizontalSlider->setVisible(true);
         ui->label_2->setVisible(true);
-         connect(ui->lineEdit, &QLineEdit::textChanged, [this](const QString& val)->void {ui->horizontalSlider->setValue(val.toInt()); });
+        ui->label_3->setVisible(true);
+        connect(ui->lineEdit, &QLineEdit::textChanged, [this](const QString& val)->void {ui->horizontalSlider->setValue(val.toInt()); });
         connect(ui->horizontalSlider, &QSlider::valueChanged, [this](const int& val)->void {ui->lineEdit->setText(locale().toString(val)); });
 
         if (!Algo::Custom_gray_shades(inImage, outImage, ui->horizontalSlider->value()))
@@ -323,19 +321,19 @@ bool MainWindow::isRedChecked()
 
 void MainWindow::on_applybtn_clicked()
 {
-    Apply(ui->comboBox->currentText());  
+	 Apply(ui->comboBox->currentText());
 }
 
 void MainWindow::on_resetbtn_clicked()
 {
-    ui->image_lbl->clear();
+	ui->image_lbl->clear();
     ui->image_lbl->setPixmap(m_image);
     ui->image_lbl->resize(ui->image_lbl->pixmap()->size());
 }
 
 void MainWindow::on_radioButton_blue_clicked()
 {
-   std::cout << "Blue radio button!"<<std::endl;
+	std::cout << "Blue radio button!"<<std::endl;
    if (isBlueChecked())
    {
        on_comboBox_currentTextChanged("Single color channel");
@@ -344,7 +342,7 @@ void MainWindow::on_radioButton_blue_clicked()
 
 void MainWindow::on_radioButton_green_clicked()
 {
-    std::cout << "Green radio button!"<<std::endl;
+	std::cout << "Green radio button!"<<std::endl;
     if (isGreenChecked())
     {
         on_comboBox_currentTextChanged("Single color channel");
@@ -353,7 +351,7 @@ void MainWindow::on_radioButton_green_clicked()
 
 void MainWindow::on_radioButton_red_clicked()
 {
-    std::cout << "Red radio button!" << std::endl;
+	std::cout << "Red radio button!" << std::endl;
     if (isRedChecked())
     {
         on_comboBox_currentTextChanged("Single color channel");
@@ -362,7 +360,7 @@ void MainWindow::on_radioButton_red_clicked()
 
 void MainWindow::on_radioButton_min_clicked()
 {
-    std::cout << "Minimum decomposition radio button!" << std::endl;
+	std::cout << "Minimum decomposition radio button!" << std::endl;
     if (isMinChecked()) 
     {
         on_comboBox_currentTextChanged("Decomposition");
@@ -371,7 +369,7 @@ void MainWindow::on_radioButton_min_clicked()
 
 void MainWindow::on_radioButton_max_clicked()
 {
-    std::cout << "Maximum decomposition radio button!" << std::endl;
+	std::cout << "Maximum decomposition radio button!" << std::endl;
     if (isMaxChecked())
     {
         on_comboBox_currentTextChanged("Decomposition");
