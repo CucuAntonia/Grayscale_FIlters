@@ -36,7 +36,7 @@
          <widget class="QLabel" name="label">
           <property name="font">
            <font>
-            <family>Times New Roman</family>
+            <family>Segoe UI</family>
             <pointsize>11</pointsize>
            </font>
           </property>
@@ -58,8 +58,8 @@
           </property>
           <property name="font">
            <font>
-            <family>Times New Roman</family>
-            <pointsize>12</pointsize>
+            <family>Segoe UI</family>
+            <pointsize>11</pointsize>
            </font>
           </property>
           <property name="autoFillBackground">
@@ -120,7 +120,7 @@
            <widget class="QLabel" name="label_2">
             <property name="font">
              <font>
-              <family>Times New Roman</family>
+              <family>Segoe UI</family>
               <pointsize>11</pointsize>
              </font>
             </property>
@@ -136,7 +136,7 @@
            <widget class="QLabel" name="label_3">
             <property name="font">
              <font>
-              <family>Times New Roman</family>
+              <family>Segoe UI</family>
               <pointsize>11</pointsize>
              </font>
             </property>
@@ -159,7 +159,7 @@
             </property>
             <property name="font">
              <font>
-              <family>Times New Roman</family>
+              <family>Segoe UI</family>
               <pointsize>11</pointsize>
              </font>
             </property>
@@ -194,9 +194,9 @@ background-color: rgb(43,45,56);
            <widget class="QSlider" name="horizontalSlider">
             <property name="font">
              <font>
-              <family>Times New Roman</family>
-              <pointsize>10</pointsize>
-              <bold>true</bold>
+              <family>Segoe UI</family>
+              <pointsize>11</pointsize>
+              <bold>false</bold>
              </font>
             </property>
             <property name="styleSheet">
@@ -279,8 +279,10 @@ border-radius: 4px;
          <widget class="QRadioButton" name="radioButton_blue">
           <property name="font">
            <font>
-            <family>Times New Roman</family>
-            <pointsize>12</pointsize>
+            <family>Segoe UI</family>
+            <pointsize>11</pointsize>
+            <italic>false</italic>
+            <bold>false</bold>
            </font>
           </property>
           <property name="styleSheet">
@@ -322,8 +324,10 @@ QRadioButton::indicator:checked:pressed {
          <widget class="QRadioButton" name="radioButton_green">
           <property name="font">
            <font>
-            <family>Times New Roman</family>
-            <pointsize>12</pointsize>
+            <family>Segoe UI</family>
+            <pointsize>11</pointsize>
+            <italic>false</italic>
+            <bold>false</bold>
            </font>
           </property>
           <property name="styleSheet">
@@ -366,8 +370,10 @@ QRadioButton::indicator:checked:pressed {
          <widget class="QRadioButton" name="radioButton_red">
           <property name="font">
            <font>
-            <family>Times New Roman</family>
-            <pointsize>12</pointsize>
+            <family>Segoe UI</family>
+            <pointsize>11</pointsize>
+            <italic>false</italic>
+            <bold>false</bold>
            </font>
           </property>
           <property name="styleSheet">
@@ -413,8 +419,10 @@ QRadioButton::indicator:checked:pressed {
          <widget class="QRadioButton" name="radioButton_min">
           <property name="font">
            <font>
-            <family>Times New Roman</family>
-            <pointsize>12</pointsize>
+            <family>Segoe UI</family>
+            <pointsize>11</pointsize>
+            <italic>false</italic>
+            <bold>false</bold>
            </font>
           </property>
           <property name="styleSheet">
@@ -456,8 +464,10 @@ QRadioButton::indicator:checked:pressed {
          <widget class="QRadioButton" name="radioButton_max">
           <property name="font">
            <font>
-            <family>Times New Roman</family>
-            <pointsize>12</pointsize>
+            <family>Segoe UI</family>
+            <pointsize>11</pointsize>
+            <italic>false</italic>
+            <bold>false</bold>
            </font>
           </property>
           <property name="styleSheet">
@@ -512,7 +522,7 @@ QRadioButton::indicator:checked:pressed {
           </property>
           <property name="font">
            <font>
-            <family>Times New Roman</family>
+            <family>Segoe UI</family>
             <pointsize>11</pointsize>
             <italic>false</italic>
             <bold>false</bold>
@@ -536,8 +546,10 @@ QRadioButton::indicator:checked:pressed {
           </property>
           <property name="font">
            <font>
-            <family>Times New Roman</family>
+            <family>Segoe UI</family>
             <pointsize>11</pointsize>
+            <italic>false</italic>
+            <bold>false</bold>
            </font>
           </property>
           <property name="text">
@@ -611,8 +623,9 @@ QRadioButton::indicator:checked:pressed {
    </attribute>
    <addaction name="actionOpen"/>
    <addaction name="actionSave"/>
-   <addaction name="actionQuit"/>
+   <addaction name="separator"/>
    <addaction name="actionOpen_Help_Page"/>
+   <addaction name="separator"/>
   </widget>
   <action name="actionOpen">
    <property name="icon">
