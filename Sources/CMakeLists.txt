@@ -1,0 +1,4 @@
+add_subdirectory(Algorithms)
+add_subdirectory(Utils)
+add_subdirectory(UserInterface)
+add_subdirectory(ImageProcessingApp)
