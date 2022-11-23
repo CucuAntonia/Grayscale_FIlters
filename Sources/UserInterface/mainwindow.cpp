@@ -9,10 +9,10 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->actionOpen->setIcon(QIcon("..\\..\\PracticaSpring2022\\Resources\\open.png"));
-    ui->actionOpen_Help_Page->setIcon(QIcon("..\\..\\PracticaSpring2022\\Resources\\help.png"));
-    ui->actionQuit->setIcon(QIcon("..\\..\\PracticaSpring2022\\Resources\\quit.png"));
-    ui->actionSave->setIcon(QIcon("..\\..\\PracticaSpring2022\\Resources\\save.png"));
+    ui->actionOpen->setIcon(QIcon("D:\\VS_Projects\\Practica_bun\\PracticaSpring2022\\Resources\\open.png"));
+    ui->actionOpen_Help_Page->setIcon(QIcon("D:\\VS_Projects\\Practica_bun\\PracticaSpring2022\\Resources\\help.png"));
+    ui->actionQuit->setIcon(QIcon("D:\\VS_Projects\\Practica_bun\\PracticaSpring2022\\Resources\\quit.png"));
+    ui->actionSave->setIcon(QIcon("D:\\VS_Projects\\Practica_bun\\PracticaSpring2022\\Resources\\save.png"));
     ui->horizontalSlider->setVisible(false);
     ui->radioButton_green->setVisible(false);
     ui->radioButton_red->setVisible(false);
@@ -79,7 +79,7 @@ void MainWindow::on_actionSave_triggered()
     if (fileName.length() == 0)
         return;
 
-    m_image.save(fileName);
+    m_dispimg.save(fileName);
 }
 
 bool MainWindow::img_display(const cv::Mat& image)

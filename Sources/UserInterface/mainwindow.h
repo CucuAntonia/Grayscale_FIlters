@@ -62,7 +62,7 @@ private slots:
     ///@return  bool
 	bool isMinChecked();
   
-    ///@brief   Verify if theradiobutton for Maximum decomposition algorithm is checked or not.
+    ///@brief   Verify if the radiobutton for Maximum decomposition algorithm is checked or not.
     ///@return  bool
     bool isMaxChecked();
 

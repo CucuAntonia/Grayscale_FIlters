@@ -1,8 +1,3 @@
-#include <iostream>
-#include "Algorithms.h"
-#include "Utils.h"
-#include <stdlib.h>
-#include <stdbool.h>
 #include <QApplication>
 #include "mainwindow.h"
 
@@ -11,7 +6,8 @@
 		QApplication a(argc, argv);
 
 		//Set the application stylesheet
-		QString pathToQss = "..\\..\\PracticaSpring2022\\Resources\\Combinear.qss";
+		//__FILE__
+		QString pathToQss = "D:\\VS_Projects\\Practica_bun\\PracticaSpring2022\\Resources\\Combinear.qss";
 		QFile styleSheetFile(pathToQss);
 		styleSheetFile.open(QFile::ReadOnly);
 		QString styleSheet = QLatin1String(styleSheetFile.readAll());

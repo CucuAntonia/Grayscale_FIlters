@@ -1,16 +1,15 @@
 ﻿#include <iostream>
 #include "Utils.h"
+#include <opencv2/imgproc.hpp>
 
 namespace Utils 
 {
     bool ConvertMat2QImage(const cv::Mat& src, QImage& dest)
     {
         //Se verifică dacă parametrul src reprezintă o imagine de intrare validă
-        if (src.rows < 1 || src.cols < 1)
-            return false;
-        if (!src.data)
+        if (src.empty())
         {
-            std::cout << "Error loading image... \n";
+            std::cout << "The image was not loaded or the image is empty!" << std::endl;
             return false;
         }
 
@@ -61,9 +60,12 @@ namespace Utils
     bool ConvertQImage2Mat(const QImage& src, cv::Mat& dest)
     {
         //Se verifică dacă parametrul src reprezintă o imagine de intrare validă
-        std::cout << src.format() << std::endl;
         if (src.isNull() == 1)
+        {
+            std::cout << "The image was not loaded or the image is empty!" << std::endl;
             return false;
+        }
+            
         switch (src.format())
         {
         case QImage::Format::Format_RGB888:
@@ -92,5 +94,33 @@ namespace Utils
         }
 
         return true;
+    }
+
+    bool GetDisimilarity(cv::Mat inImage1, cv::Mat inImage2)
+    {
+        double totaldiff = 0.0;
+        int r1 = inImage1.rows;
+        int c1 = inImage1.cols;
+        int r2 = inImage2.rows;
+        int c2 = inImage2.cols;
+        if (r1 != r2 || c1 != c2)
+        {
+            std::cout << "Error, pictures must have identical dimensions!\n";
+            //return false;
+        }
+        for (int row = 0; row < r1; row++)
+        {
+            for (int col = 0; col < c1; col++)
+            {
+                uchar pInImage1 = inImage1.at<uchar>(row, col);
+                uchar pInImage2 = inImage2.at<uchar>(row, col);
+                totaldiff += std::abs(pInImage1 - pInImage2) / 255.0;
+            }
+        }
+        double rate = (totaldiff * 100) / (r1 * c1 * 3);
+        if (rate < 5)
+            return true;
+        else
+            return false;
     }
 }

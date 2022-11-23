@@ -1,5 +1,5 @@
 #pragma once
-#include <opencv2\opencv.hpp>  
+#include <opencv2/core/mat.hpp>
 
 #ifdef ALGORITHMS_EXPORT
 	#define ALGORITHMS_API __declspec(dllexport)
@@ -86,7 +86,7 @@ namespace Algo {
 	///@param   cv::Mat& outImage
 	///@param   int conversionFactor
 	///@return  bool
-	bool ALGORITHMS_API Custom_gray_shades(const cv::Mat& inImage, cv::Mat& outImage, int conversionFactor);
+	bool ALGORITHMS_API Custom_gray_shades(const cv::Mat& inImage, cv::Mat& outImage, int numberOfShades);
 
 	///@brief An enum that allows the user to choose an algorithm.
 	enum FilterName

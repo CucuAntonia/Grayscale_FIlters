@@ -6,23 +6,28 @@ set(LibrarySources
 	Utils.cpp
 )
 
-
-
 add_definitions(-DUTILS_EXPORT)
-
-#======================= INCLUSION OF Qt =======================#
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTOUIC ON)
-set(CMAKE_PREFIX_PATH $ENV{QTDIR})
-find_package(Qt5Core REQUIRED)
-find_package(Qt5Widgets REQUIRED)
-find_package(OpenCV REQUIRED)
-
 add_library(${PROJECT_NAME} SHARED ${LibrarySources})
 
-find_package(OpenCV REQUIRED)
-include_directories(${OpenCV_INCLUDE_DIRS})
-target_link_libraries(${PROJECT_NAME} Qt5::Widgets
-		      ${OpenCV_LIBS}
-		      )
+#Find OpenCV
+if( NOT OpenCV_FOUND )
+	find_package(OpenCV REQUIRED)
+endif()
+
+target_include_directories(${PROJECT_NAME} PUBLIC ${OpenCV_INCLUDE_DIRS})
+
+#Find QT package
+if( NOT Qt5Widgets_FOUND )
+	find_package(Qt5Widgets REQUIRED)
+endif()
+
+target_link_libraries(${PROJECT_NAME} 
+			Qt5::Widgets
+			${OpenCV_LIBS})
+
+install(TARGETS ${PROJECT_NAME}
+        RUNTIME DESTINATION "${CMAKE_BINARY_DIR}/DeliveryPackage/bin"
+        LIBRARY DESTINATION "${CMAKE_BINARY_DIR}/DeliveryPackage/lib"
+		)
+
+

@@ -1,5 +1,7 @@
 ﻿#include "Algorithms.h"
 #include <iostream>
+#include <opencv2/core/matx.hpp>
+#include <opencv2/highgui.hpp>
 
 using namespace std;
 
@@ -9,13 +11,9 @@ namespace Algo {
 	bool Averaging(const cv::Mat& inImage, cv::Mat& outImage)
 	{
 		//Se verifică dacă parametrul reprezintă o imagine de intrare validă
-		if (inImage.rows < 1 ||
-			inImage.cols < 1)
-			return false;
-
-		if (!inImage.data)
+		if (inImage.empty())
 		{
-			std::cout << "Error loading image... \n";
+			std::cout << "The image was not loaded or the image is empty!" << std::endl;
 			return false;
 		}
 
@@ -52,16 +50,12 @@ namespace Algo {
 	bool Luminance(const cv::Mat& inImage, cv::Mat& outImage)
 	{
 		//Se verifică dacă parametrul reprezintă o imagine de intrare validă
-		if (inImage.rows < 1 ||
-			inImage.cols < 1)
-			return false;
-
-		if (!inImage.data)
+		if (inImage.empty())
 		{
-			std::cout << "Error loading image... \n";
+			std::cout << "The image was not loaded or the image is empty!" << std::endl;
 			return false;
-
 		}
+
 		const int noOfChannels = inImage.channels();
 
 		//Se verifica daca imaginea are 3 canale
@@ -103,15 +97,10 @@ namespace Algo {
 	bool Desaturation(const cv::Mat& inImage, cv::Mat& outImage)
 	{
 		//Se verifică dacă parametrul reprezintă o imagine de intrare validă
-		if (inImage.rows < 1 ||
-			inImage.cols < 1)
-			return false;
-
-		if (!inImage.data)
+		if (inImage.empty())
 		{
-			std::cout << "Error loading image... \n";
+			std::cout << "The image was not loaded or the image is empty!" << std::endl;
 			return false;
-
 		}
 
 		const int noOfChannels = inImage.channels();
@@ -152,15 +141,10 @@ namespace Algo {
 	bool Maximum_decomposition(const cv::Mat& inImage, cv::Mat& outImage)
 	{
 		// Se verifică dacă parametrul reprezintă o imagine de intrare validă
-		if (inImage.rows < 1 ||
-			inImage.cols < 1)
-			return false;
-
-		if (!inImage.data)
+		if (inImage.empty())
 		{
-			std::cout << "Error loading image... \n";
+			std::cout << "The image was not loaded or the image is empty!" << std::endl;
 			return false;
-
 		}
 
 		const int noOfChannels = inImage.channels();
@@ -200,15 +184,10 @@ namespace Algo {
 	bool Minimum_decomposition(const cv::Mat& inImage, cv::Mat& outImage)
 	{
 		// Se verifică dacă parametrul reprezintă o imagine de intrare validă
-		if (inImage.rows < 1 ||
-			inImage.cols < 1)
-			return false;
-
-		if (!inImage.data)
+		if (inImage.empty())
 		{
-			std::cout << "Error loading image... \n";
+			std::cout << "The image was not loaded or the image is empty!" << std::endl;
 			return false;
-
 		}
 
 		const int noOfChannels = inImage.channels();
@@ -248,16 +227,12 @@ namespace Algo {
 	bool Single_color_channel(const cv::Mat& inImage, cv::Mat& outImage, ColorChannel colorCh)
 	{
 		// Se verifică dacă parametrul reprezintă o imagine de intrare validă
-		if (inImage.rows < 1 ||
-			inImage.cols < 1)
-			return false;
-
-		if (!inImage.data)
+		if (inImage.empty())
 		{
-			std::cout << "Error loading image... \n";
+			std::cout << "The image was not loaded or the image is empty!" << std::endl;
 			return false;
-
 		}
+		
 
 		const int noOfChannels = inImage.channels();
 
@@ -303,18 +278,13 @@ namespace Algo {
 		}
 		return true;
 	}
-	bool Custom_gray_shades(const cv::Mat& inImage, cv::Mat& outImage, int conversionFactor)
+	bool Custom_gray_shades(const cv::Mat& inImage, cv::Mat& outImage, int numberOfShades)
 	{
 		// Se verifică dacă parametrul reprezintă o imagine de intrare validă
-		if (inImage.rows < 1 ||
-			inImage.cols < 1)
-			return false;
-
-		if (!inImage.data)
+		if (inImage.empty())
 		{
-			std::cout << "Error loading image... \n";
+			std::cout << "The image was not loaded or the image is empty!" << std::endl;
 			return false;
-
 		}
 
 		const int noOfChannels = inImage.channels();
@@ -343,7 +313,10 @@ namespace Algo {
 				///Acest algoritm permite utilizatorului să aleagă câte nuanțe de gri va rezulta imaginea obținută.
 				//Orice valoare între 2 și 256 este acceptată. (valoarea se introduce ca parametru -> conversionFactor)
 				//2 reprezintă o imagine alb-negru, în timp ce 256 reprezintă o imagine identică ca cea rezultata la algoritmul Averaging.
-				uchar grayscale = (int)(((((blue + green + red) / noOfChannels) / conversionFactor) + 0.5) * conversionFactor);
+				int conversionFactor = 256 / numberOfShades;
+				int averageValue = (blue + green + red) / noOfChannels;
+				//uchar grayscale = (int)(((((blue + green + red) / 3) / conversionFactor) + 0.5) * conversionFactor);
+				uchar grayscale = (int)((averageValue / conversionFactor) + 0.5) * conversionFactor;
 
 				pOutImage[c] = grayscale;
 			}

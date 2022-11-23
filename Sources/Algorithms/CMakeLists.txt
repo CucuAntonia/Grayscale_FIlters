@@ -7,9 +7,21 @@ set(LibrarySources
 )
 
 add_definitions(-DALGORITHMS_EXPORT)
-
 add_library(${PROJECT_NAME} SHARED ${LibrarySources})
 
-find_package(OpenCV REQUIRED)
+#Find OpenCV
+if( NOT OpenCV_FOUND )
+	find_package(OpenCV REQUIRED)
+endif()
+
 include_directories(${OpenCV_INCLUDE_DIRS})
 target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS})
+
+install(TARGETS ${PROJECT_NAME}
+        RUNTIME DESTINATION "${CMAKE_BINARY_DIR}/DeliveryPackage/bin"
+        LIBRARY DESTINATION "${CMAKE_BINARY_DIR}/DeliveryPackage/lib"
+		)
+
+
+
+

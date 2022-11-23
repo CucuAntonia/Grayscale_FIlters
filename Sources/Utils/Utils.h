@@ -1,8 +1,6 @@
 #pragma once
-#include <opencv2\opencv.hpp>  
-#include <QApplication>
-#include <QtGui>
-#include <QLabel>
+#include <opencv2\core\mat.hpp>  
+#include "qimage.h"
 
 #ifdef UTILS_EXPORT
 #define UTILS_API __declspec(dllexport)
@@ -27,4 +25,6 @@ namespace Utils
 	///@param	QImage& src
 	///@param	const cv::Mat& dest
 	bool UTILS_API ConvertQImage2Mat(const QImage& src, cv::Mat& dest);
+
+	bool UTILS_API GetDisimilarity(cv::Mat inImage1, cv::Mat inImage2);
 }

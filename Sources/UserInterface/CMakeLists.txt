@@ -1,52 +1,61 @@
-cmake_minimum_required(VERSION 3.5)
-
-project(UserInterface VERSION 0.1 LANGUAGES CXX)
-
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-
-set(CMAKE_AUTOUIC ON)
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
-
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-find_package(Qt5Core REQUIRED)
-find_package(Qt5Widgets REQUIRED)
-find_package(OpenCV REQUIRED)
-include_directories(${OpenCV_INCLUDE_DIRS})
+cmake_minimum_required(VERSION 3.0)
+project(UserInterface)
 
 set(LibrarySources
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
-	
 )
 
+#Automatically add the current source and build directories to the include path.
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
+#CMake will handle the Qt moc preprocessor automatically, i.e. without having to use the QT4_WRAP_CPP()
+set(CMAKE_AUTOMOC ON)
 
-
+#CMake will handle the Qt uic code generator automatically, i.e. without having to use the QT4_WRAP_UI()
+set(CMAKE_AUTOUIC ON)
 
 add_definitions(-DUI_EXPORT)
 add_library(${PROJECT_NAME} SHARED ${LibrarySources})
 
+#Find OpenCV
+if( NOT OpenCV_FOUND )
+	find_package(OpenCV REQUIRED)
+endif()
 
+#Find Qt
+if( NOT Qt5Widgets_FOUND )
+	find_package(Qt5Widgets REQUIRED)
+endif()
+
+if( NOT Qt5Core_FOUND )
+	find_package(Qt5Core REQUIRED)
+endif()
+
+
+target_link_libraries(${PROJECT_NAME} 
+		      Algorithms.lib
+		      Utils.lib
+		      Qt5::Widgets 
+		      Qt5::Core
+		      ${OpenCV_LIBS}
+	      	      )
 
 target_include_directories(${PROJECT_NAME} PUBLIC
-	${CMAKE_SOURCE_DIR}/Algorithms
-	${CMAKE_SOURCE_DIR}/Utils
+	${CMAKE_SOURCE_DIR}/Sources/Algorithms
+	${CMAKE_SOURCE_DIR}/Sources/Utils
+	${OpenCV_INCLUDE_DIRS}
 	
 )
+
+#Link this project with the runtime output dir. Algo and Utils are also linked to this 
 target_link_directories(${PROJECT_NAME} PUBLIC
 	${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
 )
-target_link_libraries(${PROJECT_NAME} Qt5::Widgets
-		      ${OpenCV_LIBS}	
-		      Algorithms.lib
-		      Utils.lib
-		      )
 
 
-if(QT_VERSION_MAJOR EQUAL 6)
-    qt_finalize_executable(UserInterface)
-endif()
+install(TARGETS ${PROJECT_NAME}
+        RUNTIME DESTINATION "${CMAKE_BINARY_DIR}/DeliveryPackage/bin"
+        LIBRARY DESTINATION "${CMAKE_BINARY_DIR}/DeliveryPackage/lib"
+		)
