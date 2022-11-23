@@ -25,22 +25,17 @@ endif()
 if( NOT Qt5Widgets_FOUND )
 	find_package(Qt5Widgets REQUIRED)
 endif()
-	
-#Automatically add the current source and build directories to the include path.
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-	
+		
 add_dependencies(${PROJECT_NAME}
 	Algorithms
 	Utils
 	UserInterface
-	Tests
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC
 	${CMAKE_SOURCE_DIR}/Sources/Algorithms
 	${CMAKE_SOURCE_DIR}/Sources/Utils
 	${CMAKE_SOURCE_DIR}/Sources/UserInterface
-	${CMAKE_SOURCE_DIR}/Tests
 	${OpenCV_INCLUDE_DIRS}
 	
 )
@@ -54,7 +49,6 @@ target_link_libraries(${PROJECT_NAME}
 	Algorithms.lib
 	Utils.lib
 	UserInterface.lib
-	Tests.lib
 	Qt5::Gui
 	Qt5::Widgets
 	${OpenCV_LIBS}

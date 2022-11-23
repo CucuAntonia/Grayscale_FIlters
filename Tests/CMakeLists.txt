@@ -13,16 +13,12 @@ if( NOT OpenCV_FOUND )
 	find_package(OpenCV REQUIRED)
 endif()
 
-include_directories(${OpenCV_INCLUDE_DIRS})
+target_include_directories(${PROJECT_NAME} PUBLIC ${OpenCV_INCLUDE_DIRS})
 
 #Find Qt
 if( NOT Qt5Widgets_FOUND )
 	find_package(Qt5Widgets REQUIRED)
 endif()
-
-
-#Automatically add the current source and build directories to the include path.
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 target_link_libraries(${PROJECT_NAME} 
 		      Algorithms.lib
