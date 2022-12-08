@@ -1,6 +1,6 @@
 #include "CppUnitTest.h"
-#include "..\..\PracticaSpring2022\Sources\Algorithms\Algorithms.h"
-#include "..\..\PracticaSpring2022\Sources\Utils\Utils.h"
+#include "..\..\imageprocessingapp\Sources\Algorithms\Algorithms.h"
+#include "..\..\imageprocessingapp\Sources\Utils\Utils.h"
 #include <opencv2/imgcodecs.hpp>
 #include <opencv2/imgproc.hpp>
 
@@ -42,7 +42,7 @@ namespace TesteImageProcessingApp
 			cv::Mat outImage_expected = cv::imread(out_path, cv::IMREAD_GRAYSCALE);
 			cv::Mat outImage_actual;
 			Assert::AreEqual(true, Algo::Averaging(inImage, outImage_actual));
-			Assert::AreEqual(true, Utils::GetDisimilarity(outImage_actual, outImage_expected));
+			Assert::AreEqual(true, Utils::GetDisimilarityMat(outImage_actual, outImage_expected));
 		}
 		TEST_METHOD(ValidInputImage_Luminance)
 		{
@@ -70,7 +70,7 @@ namespace TesteImageProcessingApp
 			cv::Mat outImage_expected = cv::imread(out_path, cv::IMREAD_GRAYSCALE);
 			cv::Mat outImage_actual;
 			Assert::AreEqual(true, Algo::Luminance(inImage, outImage_actual));
-			Assert::AreEqual(true, Utils::GetDisimilarity(outImage_actual, outImage_expected));
+			Assert::AreEqual(true, Utils::GetDisimilarityMat(outImage_actual, outImage_expected));
 		}
 
 		TEST_METHOD(ValidInputImage_Desaturation)
@@ -99,7 +99,7 @@ namespace TesteImageProcessingApp
 			cv::Mat outImage_expected = cv::imread(out_path, cv::IMREAD_GRAYSCALE);
 			cv::Mat outImage_actual;
 			Assert::AreEqual(true, Algo::Desaturation(inImage, outImage_actual));
-			Assert::AreEqual(true, Utils::GetDisimilarity(outImage_actual, outImage_expected));
+			Assert::AreEqual(true, Utils::GetDisimilarityMat(outImage_actual, outImage_expected));
 		}
 
 		TEST_METHOD(ValidInputImage_Minimum_decomposition)
@@ -128,7 +128,7 @@ namespace TesteImageProcessingApp
 			cv::Mat outImage_expected = cv::imread(out_path, cv::IMREAD_GRAYSCALE);
 			cv::Mat outImage_actual;
 			Assert::AreEqual(true, Algo::Minimum_decomposition(inImage, outImage_actual));
-			Assert::AreEqual(true, Utils::GetDisimilarity(outImage_actual, outImage_expected));
+			Assert::AreEqual(true, Utils::GetDisimilarityMat(outImage_actual, outImage_expected));
 		}
 
 
@@ -158,7 +158,7 @@ namespace TesteImageProcessingApp
 			cv::Mat outImage_expected = cv::imread(out_path, cv::IMREAD_GRAYSCALE);
 			cv::Mat outImage_actual;
 			Assert::AreEqual(true, Algo::Maximum_decomposition(inImage, outImage_actual));
-			Assert::AreEqual(true, Utils::GetDisimilarity(outImage_actual, outImage_expected));
+			Assert::AreEqual(true, Utils::GetDisimilarityMat(outImage_actual, outImage_expected));
 
 		}
 		TEST_METHOD(ValidInputImage_Single_color_channel)
@@ -187,7 +187,7 @@ namespace TesteImageProcessingApp
 			cv::Mat outImage_expected = cv::imread(out_path, cv::IMREAD_GRAYSCALE);
 			cv::Mat outImage_actual;
 			Assert::AreEqual(true, Algo::Single_color_channel(inImage, outImage_actual, Algo::ColorChannel::Blue));
-			Assert::AreEqual(true, Utils::GetDisimilarity(outImage_actual, outImage_expected));
+			Assert::AreEqual(true, Utils::GetDisimilarityMat(outImage_actual, outImage_expected));
 		}
 
 		TEST_METHOD(ValidOutputImage_Single_color_channel_Green)
@@ -198,7 +198,7 @@ namespace TesteImageProcessingApp
 			cv::Mat outImage_expected = cv::imread(out_path, cv::IMREAD_GRAYSCALE);
 			cv::Mat outImage_actual;
 			Assert::AreEqual(true, Algo::Single_color_channel(inImage, outImage_actual, Algo::ColorChannel::Green));
-			Assert::AreEqual(true, Utils::GetDisimilarity(outImage_actual, outImage_expected));
+			Assert::AreEqual(true, Utils::GetDisimilarityMat(outImage_actual, outImage_expected));
 		}
 		TEST_METHOD(ValidOutputImage_Single_color_channel_Red)
 		{
@@ -208,7 +208,7 @@ namespace TesteImageProcessingApp
 			cv::Mat outImage_expected = cv::imread(out_path, cv::IMREAD_GRAYSCALE);
 			cv::Mat outImage_actual;
 			Assert::AreEqual(true, Algo::Single_color_channel(inImage, outImage_actual, Algo::ColorChannel::Red));
-			Assert::AreEqual(true, Utils::GetDisimilarity(outImage_actual, outImage_expected));
+			Assert::AreEqual(true, Utils::GetDisimilarityMat(outImage_actual, outImage_expected));
 		}
 		TEST_METHOD(ValidInputImage_Custom_gray_shades)
 		{
@@ -236,7 +236,7 @@ namespace TesteImageProcessingApp
 			cv::Mat outImage_expected = cv::imread(out_path, cv::IMREAD_GRAYSCALE);
 			cv::Mat outImage_actual;
 			Assert::AreEqual(true, Algo::Custom_gray_shades(inImage, outImage_actual, 4));
-			Assert::AreEqual(true, Utils::GetDisimilarity(outImage_actual, outImage_expected));
+			Assert::AreEqual(true, Utils::GetDisimilarityMat(outImage_actual, outImage_expected));
 		}
 
 
@@ -257,37 +257,51 @@ namespace TesteImageProcessingApp
 
 		TEST_METHOD(ValidOutputImage1Channel_Mat2QImage)
 		{
-			cv::Mat src(10, 10, CV_8UC1);
-			QImage dest;
-			Assert::AreEqual(true, Utils::ConvertMat2QImage(src, dest));
+			cv::Mat inImage(20, 20, CV_8UC1);
+			QImage image_actual;
+			QImage image_expected(20, 20, QImage::Format::Format_Grayscale8);
+			Assert::AreEqual(true, Utils::ConvertMat2QImage(inImage, image_actual));
+			Assert::AreEqual(true, Utils::GetDisimilarityQImage(image_actual, image_expected));
+			
 		}
 
 		TEST_METHOD(ValidOutputImage3Channels_Mat2QImage)
 		{
-			cv::Mat src(10, 10, CV_8UC3);
-			QImage dest;
-			Assert::AreEqual(true, Utils::ConvertMat2QImage(src, dest));
+			cv::Mat inImage(20, 20, CV_8UC3);
+			QImage image_actual;
+			QImage image_expected(20, 20, QImage::Format::Format_RGB888);
+			Assert::AreEqual(true, Utils::ConvertMat2QImage(inImage, image_actual));
+			Assert::AreEqual(true, Utils::GetDisimilarityQImage(image_actual, image_expected));
+
 		}
 
 		TEST_METHOD(ValidOutputImageRGB888_QImage2Mat)
 		{
-			QImage src(10, 10, QImage::Format_RGB888);
-			cv::Mat dest;
-			Assert::AreEqual(true, Utils::ConvertQImage2Mat(src, dest));
+			QImage inImage(20, 20, QImage::Format::Format_RGB888);
+			cv::Mat image_actual;
+			cv::Mat image_expected(20, 20, CV_8UC3);
+			Assert::AreEqual(true, Utils::ConvertQImage2Mat(inImage, image_actual));
+			Assert::AreEqual(true, Utils::GetDisimilarityMat(image_actual, image_expected));
 		}
 
 		TEST_METHOD(ValidOutputImageRGB32_QImage2Mat)
 		{
-			QImage src(10, 10, QImage::Format_RGB32);
-			cv::Mat dest;
-			Assert::AreEqual(true, Utils::ConvertQImage2Mat(src, dest));
+			QImage inImage(20, 20, QImage::Format::Format_RGB32);
+			cv::Mat image_actual;
+			cv::Mat image_expected(20, 20, CV_8UC4);
+			Assert::AreEqual(true, Utils::ConvertQImage2Mat(inImage, image_actual));
+			Assert::AreEqual(true, Utils::GetDisimilarityMat(image_actual, image_expected));
+
+
 		}
 
 		TEST_METHOD(ValidOutputImageGrayscale8_QImage2Mat)
 		{
-			QImage src(10, 10, QImage::Format_Grayscale8);
-			cv::Mat dest;
-			Assert::AreEqual(true, Utils::ConvertQImage2Mat(src, dest));
+			QImage inImage(20, 20, QImage::Format::Format_Grayscale8);
+			cv::Mat image_actual;
+			cv::Mat image_expected(20, 20, CV_8UC1);
+			Assert::AreEqual(true, Utils::ConvertQImage2Mat(inImage, image_actual));
+			Assert::AreEqual(true, Utils::GetDisimilarityMat(image_actual, image_expected));
 		}
 	};
 }

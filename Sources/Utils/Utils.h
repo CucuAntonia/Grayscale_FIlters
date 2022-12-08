@@ -26,5 +26,9 @@ namespace Utils
 	///@param	const cv::Mat& dest
 	bool UTILS_API ConvertQImage2Mat(const QImage& src, cv::Mat& dest);
 
-	bool UTILS_API GetDisimilarity(cv::Mat inImage1, cv::Mat inImage2);
+	bool UTILS_API GetDisimilarityMat(cv::Mat inImage1, cv::Mat inImage2);
+
+	bool UTILS_API GetDisimilarityQImage(QImage inImage1, QImage inImage2);
+
+	//bool UTILS_API VerifIfMatQImageAreSame(cv::Mat inImage1, QImage inImage2);
 }

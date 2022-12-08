@@ -54,6 +54,10 @@ target_link_libraries(${PROJECT_NAME}
 	${OpenCV_LIBS}
 )
 
+
+#put batch file start the executable into the delivery package
+	install (FILES "${CMAKE_SOURCE_DIR}/Platform Scripts/start_application.bat" DESTINATION "${CMAKE_BINARY_DIR}/DeliveryPackage")
+
 #put all images into the resource directory
 	install(DIRECTORY "${CMAKE_SOURCE_DIR}/Resources" DESTINATION "${CMAKE_BINARY_DIR}/DeliveryPackage")
 
@@ -66,6 +70,7 @@ target_link_libraries(${PROJECT_NAME}
 #Set the install package for QT
   install (FILES $<TARGET_FILE:Qt5::Widgets> 
 		 $<TARGET_FILE:Qt5::Gui>
+		 $<TARGET_FILE:Qt5::Core>
 	 	 DESTINATION "${CMAKE_BINARY_DIR}/DeliveryPackage/bin" )
 
 
