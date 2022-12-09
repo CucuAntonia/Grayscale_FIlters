@@ -13,7 +13,6 @@ endif()
 find_package(OpenCV REQUIRED)
 find_package(Qt5Widgets REQUIRED)
 
-
 add_subdirectory(Tests)
 add_subdirectory(Sources)
 
