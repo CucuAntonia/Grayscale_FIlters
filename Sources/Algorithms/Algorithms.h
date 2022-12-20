@@ -26,7 +26,7 @@ namespace Algo {
 	///@details This method uses this formula:  Gray = (Red * 0.3 + Green * 0.59 + Blue * 0.11)
 	///@param   const cv::Mat& inImage
 	///@param   cv::Mat& outImage
-	///@returns bool
+	///@return  bool
 	bool ALGORITHMS_API Luminance(const cv::Mat& inImage, cv::Mat& outImage);
 
 	///@brief   The third method to convert a BGR image into a grayscale image.

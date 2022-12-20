@@ -4,6 +4,12 @@ if(NOT DEFINED CTEST_PROJECT_NAME)
 	message(FATAL_ERROR "CTEST_PROJECT_NAME not defined!")
 endif()
 
+set(CTEST_SOURCE_DIRECTORY "${CTEST_SCRIPT_DIRECTORY}/../../")
+set(CTEST_BINARY_DIRECTORY "${CTEST_SCRIPT_DIRECTORY}/../../../../../Builds/build_1")
+
+MESSAGE ( "Actual path is ${CTEST_SOURCE_DIRECTORY}" )
+MESSAGE ( "Actual binary path is ${CTEST_BINARY_DIRECTORY}" )
+
 #Set the compiler
 if(DEFINED Compiler)
 	message(STATUS "Compiler: ${Compiler}")
@@ -26,12 +32,17 @@ elseif(DEFINED Compiler)
 	message(FATAL_ERROR "Missing compiler version!")
 endif()
 
+
 #Set the platform
 
 if(DEFINED Platform)
 	message(STATUS "Platform: ${Platform}")
 	if(${Platform} MATCHES "x64")
-		set(CTEST_CMAKE_GENERATOR "${CTEST_CMAKE_GENERATOR} x64") 
+		if(${Compiler} MATCHES "VS2019")
+			set(CTEST_CMAKE_GENERATOR "${CTEST_CMAKE_GENERATOR}") 
+		else()
+			set(CTEST_CMAKE_GENERATOR "${CTEST_CMAKE_GENERATOR} x64") 
+		endif()
 	elseif(${Platform} MATCHES "Win32")
 		set(CTEST_CMAKE_GENERATOR "${CTEST_CMAKE_GENERATOR} Win32")
 	elseif(${Platform} MATCHES "ARM")
@@ -56,4 +67,3 @@ if(DEFINED BuildType)
 elseif(DEFINED BuildType)
 	message(FATAL_ERROR "Missing configuration!")
 endif()
-message("CTEST_CMAKE_GENERATOR:" ${CTEST_CMAKE_GENERATOR})

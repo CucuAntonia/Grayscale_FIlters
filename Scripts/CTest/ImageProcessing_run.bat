@@ -43,12 +43,14 @@ echo "Stage=%Stage%"
 echo "Compiler=%Compiler%"
 if %Stage%==Config (
 	%CTestPath% %CTestArgs% -VV -S "%~dp0\ImageProcessingApp_config.cmake"
-	echo "Final"
 	)
 	
-	
 ::Build
+if %Stage%==Build (
+	%CTestPath% %CTestArgs% -VV -S "%~dp0\ImageProcessingApp_build.cmake"
+	)
 
-::if %Stage% == "Build" (
-::	%CTestPath% %Args% -S "%~dp0\ImageProcessingApp_build.cmake"
-	
+::Test
+if %Stage%==Test (
+	%CTestPath% %CTestArgs% -VV -S "%~dp0\ImageProcessingApp_tests.cmake"
+	)

@@ -9,4 +9,10 @@ set "Platform=x64"
 
 set "Stage=Config"
 call ImageProcessing_run.bat "%ProjName%" "%Compiler%" "%BuildConfig%" "%Platform%" "%Stage%"
+
+set "Stage=Build"
+call ImageProcessing_run.bat "%ProjName%" "%Compiler%" "%BuildConfig%" "%Platform%" "%Stage%"
+
+set "Stage=Test"
+call ImageProcessing_run.bat "%ProjName%" "%Compiler%" "%BuildConfig%" "%Platform%" "%Stage%"
 pause

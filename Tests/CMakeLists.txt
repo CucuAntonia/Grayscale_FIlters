@@ -38,5 +38,3 @@ install(TARGETS ${PROJECT_NAME}
         LIBRARY DESTINATION "${CMAKE_BINARY_DIR}/DeliveryPackage/lib"
 		)
 
-#put batch file that runs tests into the delivery package
-	install (FILES "${CMAKE_CURRENT_SOURCE_DIR}/Scripts/run_tests.bat" DESTINATION "${CMAKE_BINARY_DIR}/DeliveryPackage")

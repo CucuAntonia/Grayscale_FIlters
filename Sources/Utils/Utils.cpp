@@ -153,21 +153,27 @@ namespace Utils
 
     }
 
-  /*  bool UTILS_API VerifIfMatQImageAreSame(cv::Mat inImage1, QImage inImage2)
+    bool UTILS_API VerifIfMatQImageAreSame(cv::Mat inImage1, QImage inImage2)
     {
-        int ok = 0;
+        
         if (inImage2.height() == inImage1.rows && inImage2.width() == inImage1.cols)
         {
-            if ((inImage1.type() == 0 && inImage2.format() == 24) ||
-                (inImage1.type() == 0 && inImage2.format() == 24) ||
-                (inImage1.type() == 0 && inImage2.format() == 24))
-                ok = 1;
+            if (inImage1.type() == 0 && inImage2.format() == 24)
+            {
+
+                return true;
+            }
+            else if (inImage1.type() == 16 && inImage2.format() == 13)
+            {
+
+                return true;
+            }
+            else if (inImage1.type() == 16 && inImage2.format() == 4)
+            {
+
+                return true;
+            }
         }
-             
-        if (ok == 0)
-            return false;
-        else
-            return true;
-       
-    }*/
+        return false;
+    }
 }

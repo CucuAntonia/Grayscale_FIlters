@@ -261,6 +261,7 @@ namespace TesteImageProcessingApp
 			QImage image_actual;
 			QImage image_expected(20, 20, QImage::Format::Format_Grayscale8);
 			Assert::AreEqual(true, Utils::ConvertMat2QImage(inImage, image_actual));
+			Assert::AreEqual(true, Utils::VerifIfMatQImageAreSame(inImage, image_actual));
 			Assert::AreEqual(true, Utils::GetDisimilarityQImage(image_actual, image_expected));
 			
 		}
@@ -271,6 +272,7 @@ namespace TesteImageProcessingApp
 			QImage image_actual;
 			QImage image_expected(20, 20, QImage::Format::Format_RGB888);
 			Assert::AreEqual(true, Utils::ConvertMat2QImage(inImage, image_actual));
+			Assert::AreEqual(true, Utils::VerifIfMatQImageAreSame(inImage, image_actual));
 			Assert::AreEqual(true, Utils::GetDisimilarityQImage(image_actual, image_expected));
 
 		}
@@ -281,6 +283,7 @@ namespace TesteImageProcessingApp
 			cv::Mat image_actual;
 			cv::Mat image_expected(20, 20, CV_8UC3);
 			Assert::AreEqual(true, Utils::ConvertQImage2Mat(inImage, image_actual));
+			Assert::AreEqual(true, Utils::VerifIfMatQImageAreSame(image_actual, inImage));
 			Assert::AreEqual(true, Utils::GetDisimilarityMat(image_actual, image_expected));
 		}
 
@@ -290,6 +293,7 @@ namespace TesteImageProcessingApp
 			cv::Mat image_actual;
 			cv::Mat image_expected(20, 20, CV_8UC4);
 			Assert::AreEqual(true, Utils::ConvertQImage2Mat(inImage, image_actual));
+			Assert::AreEqual(true, Utils::VerifIfMatQImageAreSame(image_actual, inImage));
 			Assert::AreEqual(true, Utils::GetDisimilarityMat(image_actual, image_expected));
 
 
@@ -301,6 +305,7 @@ namespace TesteImageProcessingApp
 			cv::Mat image_actual;
 			cv::Mat image_expected(20, 20, CV_8UC1);
 			Assert::AreEqual(true, Utils::ConvertQImage2Mat(inImage, image_actual));
+			Assert::AreEqual(true, Utils::VerifIfMatQImageAreSame(image_actual, inImage));
 			Assert::AreEqual(true, Utils::GetDisimilarityMat(image_actual, image_expected));
 		}
 	};
