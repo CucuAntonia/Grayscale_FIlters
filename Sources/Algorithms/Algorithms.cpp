@@ -315,7 +315,6 @@ namespace Algo {
 				//2 reprezintă o imagine alb-negru, în timp ce 256 reprezintă o imagine identică ca cea rezultata la algoritmul Averaging.
 				int conversionFactor = 256 / numberOfShades;
 				int averageValue = (blue + green + red) / noOfChannels;
-				//uchar grayscale = (int)(((((blue + green + red) / 3) / conversionFactor) + 0.5) * conversionFactor);
 				uchar grayscale = (int)((averageValue / conversionFactor) + 0.5) * conversionFactor;
 
 				pOutImage[c] = grayscale;

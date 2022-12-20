@@ -28,29 +28,29 @@ public:
     ~MainWindow();
 
 private slots:
-    ///@brief   When the button is pressed, the application will stop running
+    ///@brief   When the button is pressed, the application will stop running.
     ///@return  void
     void on_actionQuit_triggered();
 
-    ///@brief   When the button is pressed, it will display a pop-up containing the developer name and some other info
+    ///@brief   When the button is pressed, it will display a pop-up containing the developer name and some other info.
     ///@return  void
     void on_actionOpen_Help_Page_triggered();
 
-    ///@brief   When the button is pressed, the users can upload a photo from their machine
+    ///@brief   When the button is pressed, the users can upload a photo from their machine.
     ///@return  void
     void on_actionOpen_triggered();
 
-    ///@brief   When the button is pressed, the photo will be saved
+    ///@brief   When the button is pressed, the photo will be saved on the user machine.
     ///@return  void
     void on_actionSave_triggered();
 
-    ///@brief   Creates the list with all algorithms names
-    ///@details This function also sets the visibility of the interface elements, depending on the selected algorithm
-    ///@param   const QString &arg1
+    ///@brief   Creates the list with all algorithms names.
+    ///@details This function also sets the visibility of the interface elements, depending on the selected algorithm.
+    ///@param   const QString &arg1 (The parameter should be "Decomposition", "Single color channel" or "Custom gray shades").
     ///@return  void
     void on_comboBox_currentTextChanged(const QString &arg1);
 
-    ///@brief   When the button is pressed, the algorithm will modify the original picture
+    ///@brief   When the button is pressed, the algorithm will modify the original picture.
     ///@return  void
     void on_applybtn_clicked();
 
@@ -78,23 +78,23 @@ private slots:
     ///@return  bool
     bool isRedChecked();
 
-    ///@brief   If the blue radiobutton is checked, the method will call on_comboBox_currentTextChanged("Single color channel")
+    ///@brief   If the blue radiobutton is checked, the method will call on_comboBox_currentTextChanged("Single color channel").
     ///@return  void
     void on_radioButton_blue_clicked();
 
-    ///@brief   If the green radiobutton is checked, the method will call on_comboBox_currentTextChanged("Single color channel")
+    ///@brief   If the green radiobutton is checked, the method will call on_comboBox_currentTextChanged("Single color channel").
     ///@return  void
     void on_radioButton_green_clicked();
 
-    ///@brief   If the red radiobutton is checked, the method will call on_comboBox_currentTextChanged("Single color channel")
+    ///@brief   If the red radiobutton is checked, the method will call on_comboBox_currentTextChanged("Single color channel").
     ///@return  void
     void on_radioButton_red_clicked();
 
-    ///@brief   If the min_decomposition radiobutton is checked, the method will call on_comboBox_currentTextChanged("Decomposition")
+    ///@brief   If the min_decomposition radiobutton is checked, the method will call on_comboBox_currentTextChanged("Decomposition").
     ///@return  void
     void on_radioButton_min_clicked();
 
-    ///@brief   If the max_decomposition radiobutton is checked, the method will call on_comboBox_currentTextChanged("Decomposition")
+    ///@brief   If the max_decomposition radiobutton is checked, the method will call on_comboBox_currentTextChanged("Decomposition").
     ///@return  void
     void on_radioButton_max_clicked();
    
@@ -105,7 +105,7 @@ private slots:
 
     ///@brief   Apply the algorithm selected by the user.
     ///@details This function does not display the modified image. Click Apply button to modify the image.
-    ///@param   QString arg1
+    ///@param   QString arg1 (The name of the grayscale algorithm to be applied)
     ///@return  void
     void Apply(QString arg1);
 
