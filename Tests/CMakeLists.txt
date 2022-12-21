@@ -1,11 +1,12 @@
 cmake_minimum_required(VERSION 3.0)
 
-project("Tests")
+project(Tests)
 
 set(LibrarySources
 	Teste_ImageProcessingApp.cpp
 )
 
+#add_executable(${PROJECT_NAME} ${LibrarySources})
 add_library(${PROJECT_NAME} SHARED ${LibrarySources})
 
 #Find OpenCV
@@ -32,6 +33,10 @@ target_link_directories(${PROJECT_NAME} PUBLIC
 	${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
 )
 
+add_test(
+  NAME ${PROJECT_NAME}
+  COMMAND $<TARGET_FILE:${PROJECT_NAME}>
+  )
 
 install(TARGETS ${PROJECT_NAME}
         RUNTIME DESTINATION "${CMAKE_BINARY_DIR}/DeliveryPackage/bin"

@@ -5,7 +5,7 @@ if(NOT DEFINED CTEST_PROJECT_NAME)
 endif()
 
 set(CTEST_SOURCE_DIRECTORY "${CTEST_SCRIPT_DIRECTORY}/../../")
-set(CTEST_BINARY_DIRECTORY "${CTEST_SCRIPT_DIRECTORY}/../../../../../Builds/build_1")
+set(CTEST_BINARY_DIRECTORY "${CTEST_SCRIPT_DIRECTORY}/../../../../../Builds/build_final")
 
 MESSAGE ( "Actual path is ${CTEST_SOURCE_DIRECTORY}" )
 MESSAGE ( "Actual binary path is ${CTEST_BINARY_DIRECTORY}" )

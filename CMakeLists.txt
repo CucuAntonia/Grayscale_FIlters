@@ -13,6 +13,9 @@ endif()
 find_package(OpenCV REQUIRED)
 find_package(Qt5Widgets REQUIRED)
 
+enable_testing()
+include(CTest)
+
 add_subdirectory(Tests)
 add_subdirectory(Sources)
 

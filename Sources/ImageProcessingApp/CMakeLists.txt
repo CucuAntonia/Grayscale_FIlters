@@ -54,6 +54,8 @@ target_link_libraries(${PROJECT_NAME}
 	${OpenCV_LIBS}
 )
 
+file(COPY "${CMAKE_SOURCE_DIR}/Tests/Data" DESTINATION "${CMAKE_BINARY_DIR}/bin")
+
 #put all images into the resource directory
 	install(DIRECTORY "${CMAKE_SOURCE_DIR}/Tests/Data" DESTINATION "${CMAKE_BINARY_DIR}/bin")
 
