@@ -14,7 +14,7 @@ if( NOT OpenCV_FOUND )
 	find_package(OpenCV REQUIRED)
 endif()
 
-include_directories(${OpenCV_INCLUDE_DIRS})
+target_include_directories(${PROJECT_NAME} PUBLIC ${OpenCV_INCLUDE_DIRS})
 target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS})
 
 install(TARGETS ${PROJECT_NAME}

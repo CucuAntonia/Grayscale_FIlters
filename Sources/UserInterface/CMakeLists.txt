@@ -7,9 +7,6 @@ set(LibrarySources
         mainwindow.ui
 )
 
-#Automatically add the current source and build directories to the include path.
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-
 #CMake will handle the Qt moc preprocessor automatically, i.e. without having to use the QT4_WRAP_CPP()
 set(CMAKE_AUTOMOC ON)
 
