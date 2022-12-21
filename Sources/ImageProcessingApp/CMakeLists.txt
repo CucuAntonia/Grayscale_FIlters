@@ -54,15 +54,20 @@ target_link_libraries(${PROJECT_NAME}
 	${OpenCV_LIBS}
 )
 
-
-#put batch file start the executable into the delivery package
-	install (FILES "${CMAKE_SOURCE_DIR}/Platform Scripts/start_application.bat" DESTINATION "${CMAKE_BINARY_DIR}/DeliveryPackage")
-
-#put all images into the resource directory
-	install(DIRECTORY "${CMAKE_SOURCE_DIR}/Resources" DESTINATION "${CMAKE_BINARY_DIR}/DeliveryPackage")
+file(COPY "${CMAKE_SOURCE_DIR}/Tests/Data" DESTINATION "${CMAKE_BINARY_DIR}/bin")
 
 #put all images into the resource directory
 	install(DIRECTORY "${CMAKE_SOURCE_DIR}/Tests/Data" DESTINATION "${CMAKE_BINARY_DIR}/bin")
+
+
+#put batch file that start the executable into the delivery package
+	install (FILES "${CMAKE_SOURCE_DIR}/Scripts/Batch/start_application.bat" DESTINATION "${CMAKE_BINARY_DIR}/DeliveryPackage")
+
+#put batch file that run tests into the delivery package
+	install (FILES "${CMAKE_SOURCE_DIR}/Scripts/Batch/run_tests.bat" DESTINATION "${CMAKE_BINARY_DIR}/DeliveryPackage")
+
+#put all images into the resource directory
+	install(DIRECTORY "${CMAKE_SOURCE_DIR}/Resources" DESTINATION "${CMAKE_BINARY_DIR}/DeliveryPackage")
 
 #Set the install package for OpenCV
   	install (FILES $<TARGET_FILE:opencv_world> DESTINATION "${CMAKE_BINARY_DIR}/DeliveryPackage/bin" )
