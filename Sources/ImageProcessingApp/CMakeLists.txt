@@ -56,10 +56,6 @@ target_link_libraries(${PROJECT_NAME}
 
 file(COPY "${CMAKE_SOURCE_DIR}/Tests/Data" DESTINATION "${CMAKE_BINARY_DIR}/bin")
 
-#put all images into the resource directory
-	install(DIRECTORY "${CMAKE_SOURCE_DIR}/Tests/Data" DESTINATION "${CMAKE_BINARY_DIR}/bin")
-
-
 #put batch file that start the executable into the delivery package
 	install (FILES "${CMAKE_SOURCE_DIR}/Scripts/Batch/start_application.bat" DESTINATION "${CMAKE_BINARY_DIR}/DeliveryPackage")
 

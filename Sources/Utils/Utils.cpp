@@ -6,7 +6,7 @@ namespace Utils
 {
     bool ConvertMat2QImage(const cv::Mat& src, QImage& dest)
     {
-        //Se verifică dacă parametrul src reprezintă o imagine de intrare validă
+        //Verify if src parameter represents a valid input image
         if (src.empty())
         {
             std::cout << "The image was not loaded or the image is empty!" << std::endl;
@@ -59,7 +59,7 @@ namespace Utils
 
     bool ConvertQImage2Mat(const QImage& src, cv::Mat& dest)
     {
-        //Se verifică dacă parametrul src reprezintă o imagine de intrare validă
+        //Verify if src parameter represents a valid input image
         if (src.isNull() == 1)
         {
             std::cout << "The image was not loaded or the image is empty!" << std::endl;
@@ -106,7 +106,7 @@ namespace Utils
         if (r1 != r2 || c1 != c2)
         {
             std::cout << "Error, pictures must have identical dimensions!\n";
-            //return false;
+            return false;
         }
         for (int row = 0; row < r1; row++)
         {
@@ -134,7 +134,7 @@ namespace Utils
         if (r1 != r2 || c1 != c2)
         {
             std::cout << "Error, pictures must have identical dimensions!\n";
-            //return false;
+            return false;
         }
         for (int row = 0; row < r1; row++)
         {

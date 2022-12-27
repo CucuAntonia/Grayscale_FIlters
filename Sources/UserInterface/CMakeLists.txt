@@ -46,6 +46,11 @@ target_include_directories(${PROJECT_NAME} PUBLIC
 	
 )
 
+add_dependencies(${PROJECT_NAME}
+			Algorithms
+			Utils
+			)
+
 #Link this project with the runtime output dir. Algo and Utils are also linked to this 
 target_link_directories(${PROJECT_NAME} PUBLIC
 	${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
