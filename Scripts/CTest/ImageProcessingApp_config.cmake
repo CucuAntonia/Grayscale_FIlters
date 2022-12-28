@@ -1,4 +1,4 @@
-#include(${CTEST_SCRIPT_DIRECTORY}/project_name.cmake)
+
 include(${CTEST_SCRIPT_DIRECTORY}/cmakegui_config.cmake)
 
 if(NOT DEFINED CTEST_PROJECT_NAME)
@@ -12,10 +12,6 @@ endif()
 if(NOT DEFINED CTEST_BINARY_DIRECTORY)
 	message(FATAL_ERROR "CTEST_BINARY_DIRECTORY not defined!")
 endif()
-
-#Clean previous pipeline run
-#ctest_empty_binary_directory(${CTEST_BINARY_DIRECTORY})
-
 
 CTEST_START(Experimental)
 set(CTEST_CONFIGURE_COMMAND "${CMAKE_COMMAND}")
